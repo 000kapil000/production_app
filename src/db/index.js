@@ -1,15 +1,13 @@
 import mongoose from "mongoose";
-import { DB_NAME } from "../constents";
+import { DB_NAME } from "../constents.js";
 const connectDB = async () => {
     try {
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`)
+        console.log(`\n MongoDb connected DB HOST:${connectionInstance.connection.host}`);
 
     } catch (error) {
-        console.log("mongodb connection error", error);
-        process
+        console.log("MONGODB connection error", error);
+        process.exit(1)
     }
 }
-
-cd C:\nextjs\prod
-git remote set-url origin git@github-personal:kapillakshakarji/prod.git
-git config user.name "Kapil"
-git config user.email "kapillakshakarji@gmail.com"
+export default connectDB
